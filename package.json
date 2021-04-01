@@ -4,9 +4,8 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "start": "tsc index.ts",
-    "dev": "nodemon index.ts",
-    "build": "node esbuild.js"
+    "start": "nodemon src/index.ts",
+    "build": "tsc --build && node esbuild.js"
   },
   "dependencies": {
     "esbuild": "^0.10.2",
