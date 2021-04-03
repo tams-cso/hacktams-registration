@@ -9,7 +9,8 @@ const path = require('path');
             entryPoints: [path.resolve(__dirname, 'src', 'client', 'src', 'index.tsx')],
             bundle: true,
             minify: true,
-            outdir: 'public',
+            outdir: 'build-public',
+            define: { 'process.env.NODE_ENV': '"production"' }
         })
         .catch((err) => {
             console.dir(err);
