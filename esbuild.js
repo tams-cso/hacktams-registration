@@ -18,7 +18,10 @@ const path = require('path');
 
     // Copy over public folder
     await fsExtra
-        .copy(path.resolve(__dirname, 'src', 'client', 'public'), path.resolve(__dirname, 'public'))
+        .copy(
+            path.resolve(__dirname, 'src', 'client', 'public'),
+            path.resolve(__dirname, 'build-public')
+        )
         .catch((err) => {
             console.dir(err);
             process.exit(1);
@@ -27,7 +30,7 @@ const path = require('path');
     // Copy over client to the build folder
     await fsExtra
         .move(
-            path.resolve(__dirname, 'public'),
+            path.resolve(__dirname, 'build-public'),
             path.resolve(__dirname, 'build', 'client', 'public')
         )
         .catch((err) => {
