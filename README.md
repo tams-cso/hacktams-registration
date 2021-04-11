@@ -4,7 +4,15 @@ This is the registration site for hackTAMS 2021! Our main site can be found at h
 
 ## Installation
 
-Simply type `yarn install`!
+Simply type `yarn install-all` to install both client and server files!
+
+Create `.env`:
+
+```
+MONGO_URL=[URL of mongodb instance (eg. 127.0.0.1:27017 or my-amazing-atlas-db.g349ds.mongodb.net)]
+MONGO_USER=[Username to access mongodb (not needed if open access)]
+MONGO_PASS=[Password to access mongodb (not needed if open access)]
+```
 
 ## Execution
 
