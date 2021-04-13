@@ -10,7 +10,7 @@ const path = require('path');
             bundle: true,
             minify: true,
             outdir: 'build-public',
-            define: { 'process.env.NODE_ENV': '"production"' }
+            define: { 'process.env.NODE_ENV': '"production"' },
         })
         .catch((err) => {
             console.dir(err);
@@ -32,7 +32,8 @@ const path = require('path');
     await fsExtra
         .move(
             path.resolve(__dirname, 'build-public'),
-            path.resolve(__dirname, 'build', 'client', 'public')
+            path.resolve(__dirname, 'build', 'client', 'public'),
+            { overwrite: true }
         )
         .catch((err) => {
             console.dir(err);
