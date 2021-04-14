@@ -1,6 +1,7 @@
 const gulp = require('gulp');
 const sourceMaps = require('gulp-sourcemaps');
 const ts = require('gulp-typescript');
+const nodemon = require('gulp-nodemon');
 const browserify = require('browserify');
 const css = require('browserify-css');
 const tsify = require('tsify');
@@ -30,25 +31,35 @@ function copyPublic() {
 }
 
 function bundleExpress() {
-    return gulp.src('./src/server/**/*').pipe(tsProject()).pipe(gulp.dest('./build'));
+    return gulp.src('./src/server/**/*').pipe(tsProject()).pipe(gulp.dest('./build/server'));
 }
 
 function copyJson() {
-    return gulp.src('./src/server/files/*.json').pipe(gulp.dest('./build/files'));
+    return gulp.src('./src/server/files/*.json').pipe(gulp.dest('./build/server/files'));
 }
 
 function copyEnv() {
-    return gulp.src('./.env').pipe(gulp.dest('./build'));
+    return gulp.src('./.env').pipe(gulp.dest('./build/server'));
 }
 
 const frontend = gulp.series(bundleReact, copyPublic);
 const backend = gulp.series(bundleExpress, copyJson, copyEnv);
 const build = gulp.series(frontend, backend);
 
-function watch() {
-    gulp.watch('./src/server/**/*', { ignoreInitial: false, delay: 500 }, backend);
-    gulp.watch('./src/client/**/*', { ignoreInitial: false, delay: 500 }, frontend);
+function watch(cb) {
+    gulp.watch('./src/server/**/*', { delay: 500 }, backend);
+    gulp.watch('./src/client/**/*', { delay: 500 }, frontend);
+    serve();
+    cb();
+}
+
+function serve() {
+    nodemon({
+        script: './build/server/index.js',
+        env: { NODE_ENV: process.env.NODE_ENV || 'development' },
+        watch: ['./build/server/**/*.js'],
+    });
 }
 
 exports.build = build;
-exports.watch = watch;
+exports.watch = gulp.series(build, watch);

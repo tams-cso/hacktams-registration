@@ -29,6 +29,7 @@
     "browserify-css": "^0.15.0",
     "gulp": "^4.0.2",
     "gulp-livereload": "^4.0.2",
+    "gulp-nodemon": "^2.5.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-typescript": "^6.0.0-alpha.1",
     "nodemon": "^2.0.7",

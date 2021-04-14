@@ -6,7 +6,7 @@ import { config } from 'dotenv';
 import apiRouter from './routes/api';
 
 // Configure environmental variables using .env
-config();
+config({ path: path.join(__dirname, '.env') });
 
 // Create the express app + define port
 const app = express();
@@ -37,10 +37,10 @@ app.use(cors());
 app.use(express.json());
 
 // Statically serve all public files
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '..', 'public')));
 
 // Route all non-api requests to the client
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, '..', 'public', 'index.html')));
 
 // Use the API router for all api calls
 app.use('/api', apiRouter);
