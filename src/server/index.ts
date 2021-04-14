@@ -6,7 +6,7 @@ import { config } from 'dotenv';
 import apiRouter from './routes/api';
 
 // Configure environmental variables using .env
-config({ path: path.join(__dirname, '.env') });
+config();
 
 // Create the express app + define port
 const app = express();

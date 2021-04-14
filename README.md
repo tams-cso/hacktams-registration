@@ -20,4 +20,4 @@ To develop the app, simply use the `yarn start` command, and it will use chokida
 
 ## Build
 
-Finally, to build the app for production, use `yarn build`. There is a simple [esbuild](https://esbuild.github.io/) script that will bundle and parse all the files.
+Finally, to build the app for production, use `yarn build`. The gulp script will bundle and parse all the files for production.
