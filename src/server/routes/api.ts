@@ -12,7 +12,6 @@ const router = express.Router();
 // Run this function for all api routes!
 router.use(async function (req, res, next) {
     // Ignore checks for /auth/client route
-    console.log(req.originalUrl);
     if (req.originalUrl === '/api/auth/client') {
         next();
         return;
@@ -26,7 +25,6 @@ router.use(async function (req, res, next) {
 
     // Check to see if it is a valid client ID header
     const data = await Client.findOne({ id: req.headers['client-id'] }).exec();
-    console.log(data);
     if (data === null) {
         sendError(res, 401, 'Invalid client-id');
         return;
@@ -44,6 +42,7 @@ router.get('/', async function (req, res) {
     });
 });
 
+// Use sub routers for api paths
 router.use('/auth', authRouter);
 
 export default router;

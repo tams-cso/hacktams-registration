@@ -13,7 +13,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Connect to MongoDB
-let userPassString = "";
+let userPassString = '';
 if (process.env.MONGO_USER !== undefined && process.env.MONGO_PASS !== undefined) {
     userPassString = `${process.env.MONGO_USER}:${process.env.MONGO_PASS}@`;
 }
@@ -36,8 +36,11 @@ app.use(cors());
 // Middleware for JSON requests
 app.use(express.json());
 
+// Statically serve all public files
+app.use(express.static(path.join(__dirname, 'public')));
+
 // Route all non-api requests to the client
-app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'client', 'public', 'index.html')));
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'public', 'index.html')));
 
 // Use the API router for all api calls
 app.use('/api', apiRouter);

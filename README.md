@@ -4,7 +4,7 @@ This is the registration site for hackTAMS 2021! Our main site can be found at h
 
 ## Installation
 
-Simply type `yarn install-all` to install both client and server files!
+Simply type `yarn install` to install the libraries!
 
 Create `.env`:
 
@@ -16,7 +16,7 @@ MONGO_PASS=[Password to access mongodb (not needed if open access)]
 
 ## Execution
 
-To develop the app, simply use the `yarn start` command, and it will use nodemon to create a server that will listen for changes.
+To develop the app, simply use the `yarn start` command, and it will use chokidar and listen for changes.
 
 ## Build
 
